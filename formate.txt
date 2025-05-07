@@ -1,0 +1,247 @@
+
+1 . Service
+
+GET    : https://apxtoken.pythonanywhere.com/service/
+
+POST   : https://apxtoken.pythonanywhere.com/service/
+
+PATCH  : https://apxtoken.pythonanywhere.com/service/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/service/pass id/
+
+Formate : 
+
+{
+  "name": "Consulting"
+}
+
+
+==============================
+
+2. Service Item
+
+GET   : https://apxtoken.pythonanywhere.com/service_item/
+
+GET   : https://apxtoken.pythonanywhere.com/service_item/service_id/pass service id/
+
+POST  : https://apxtoken.pythonanywhere.com/service_item/
+
+PATCH : https://apxtoken.pythonanywhere.com/service_item/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/service_item/pass id/
+
+
+Formate : 
+
+{
+  "service_data": pass service id,
+  "name": "Web Development",
+  "description": "We offer scalable websites.",
+  "image": "<upload file>"
+}
+
+
+
+
+#+================
+3. Blog Categories :-
+
+GET   : https://apxtoken.pythonanywhere.com/blog_categories/
+
+POST  : https://apxtoken.pythonanywhere.com/blog_categories/
+
+PATCH : https://apxtoken.pythonanywhere.com/blog_categories/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/blog_categories/pass id/
+
+Formate : 
+
+{ 
+  "category_name": "blog cate1"
+}  
+============================
+
+4. Blog
+
+
+GET   : https://apxtoken.pythonanywhere.com/blog/
+
+POST  : https://apxtoken.pythonanywhere.com/blog/
+
+PATCH : https://apxtoken.pythonanywhere.com/blog/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/blog/pass id/
+
+Formate : 
+
+{
+  "blog_category_data": pass blog_category id,
+  "title": "The Future of Blockchain",
+  "description": "Detailed post about blockchain."
+  "image": "<upload file>"
+}
+
+====================
+
+5. NFT Barriers
+
+
+GET   : https://apxtoken.pythonanywhere.com/nft_barriers/
+
+POST  : https://apxtoken.pythonanywhere.com/nft_barriers/
+
+PATCH : https://apxtoken.pythonanywhere.com/nft_barriers/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/nft_barriers/pass id/
+
+
+Formate : 
+
+{
+  "name": "Scalability",
+  "description": "Issue with scaling NFTs",
+  "image": "<upload file>"
+}
+
+=================
+
+6. Contact Us
+
+GET   : https://apxtoken.pythonanywhere.com/contact_us/
+
+POST  : https://apxtoken.pythonanywhere.com/contact_us/
+
+PATCH : https://apxtoken.pythonanywhere.com/contact_us/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/contact_us/pass id/
+
+
+Formate :
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "country": "India",
+  "phone_no": 9876543210,
+  "message": "Interested in your services."
+}
+
+====================
+
+7. Berries Structure
+
+GET   : https://apxtoken.pythonanywhere.com/berries_structure/
+
+POST  : https://apxtoken.pythonanywhere.com/berries_structure/
+
+PATCH : https://apxtoken.pythonanywhere.com/berries_structure/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/berries_structure/pass id/
+
+
+
+Formate :
+
+{
+  "description": "Fresh berries batch",
+  "berry_type": "Blueberry",
+  "farm_code": "FARM123",
+  "batch_id": "BATCH456",
+  "harvest_date": "2024-10-01",
+  "quantity_grams": 1200,
+  "certifications": ["Organic", "Fair Trade"],
+  "carbon_offset_kg": 2.5,
+  "grower": "BerryGrow Inc.",
+  "traceability_qr": "QR123456",
+  "current_owner": "Retailer X",
+  "utility_tags": ["Eco", "Traceable"]
+}
+
+
+=========================
+
+8. Admin Login
+
+POST: https://apxtoken.pythonanywhere.com/admin_login/
+
+Formate :
+
+{
+  "email": "admin@example.com",
+  "password": "securepass123"
+}
+
+================
+
+9. Ad
+
+GET   : https://apxtoken.pythonanywhere.com/ad/
+
+POST  : https://apxtoken.pythonanywhere.com/ad/
+
+PATCH : https://apxtoken.pythonanywhere.com/ad/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/ad/pass id/
+
+
+Formate :
+
+{
+  "file": "<upload file>",
+  "type": "Banner",
+  "title": "Big Sale",
+  "sub_title": "50% Off!"
+}
+
+
+===================
+
+10. User
+
+GET   : https://apxtoken.pythonanywhere.com/user/
+
+POST  : https://apxtoken.pythonanywhere.com/user/
+
+PATCH : https://apxtoken.pythonanywhere.com/user/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/user/pass id/
+
+
+Formate :
+
+{
+  "user_id": "USER001",
+  "device_token": "abc123xyz",
+  "name": "Alice",
+  "mobile_no": 9998887776,
+  "email": "alice@example.com",
+  "image": "<upload file>",
+  "aadhar_card_no": "1234-5678-9012",
+  "pan_card_no": "ABCDE1234F"
+}
+
+===================
+
+11. Token
+
+
+GET   : https://apxtoken.pythonanywhere.com/token/
+
+POST  : https://apxtoken.pythonanywhere.com/token/
+
+PATCH : https://apxtoken.pythonanywhere.com/token/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/token/pass id/
+
+
+Formate :
+
+{
+  "price": 12.5
+}
+
+===================
+
+
+
+
