@@ -65,4 +65,10 @@ urlpatterns = [
     
     path('utility_tags/', utility_tags_view.as_view()),
     path('utility_tags/<int:id>/', utility_tags_view.as_view()),
+    
+    path('berry_types/', berry_types_view.as_view()),
+    path('berry_types/<str:id>/', berry_types_view.as_view()),    
+
+    path('berry_batch/', berry_batch_view.as_view()),
+    path('berry_batch/<int:id>/', berry_batch_view.as_view()),   
 ]

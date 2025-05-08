@@ -398,3 +398,99 @@ class utility_tags_serializers(serializers.ModelSerializer):
     
         instance.save()
         return instance
+    
+    
+
+class berry_types_serializers(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
+    type=serializers.CharField(max_length=100,required=True)
+    nft_code=serializers.CharField(max_length=100,required=True)
+    nft_label=serializers.CharField(max_length=100,required=True)
+    batch_id=serializers.CharField(max_length=100,required=True)
+    class Meta:
+        model = berry_types
+        fields = "__all__"
+
+    def create(self, validated_data):
+        return berry_types.objects.create(**validated_data)
+
+
+    def update(self, instance, validated_data):
+        instance.type = validated_data.get('type', instance.type)
+        instance.nft_code = validated_data.get('nft_code', instance.nft_code)
+        instance.nft_label = validated_data.get('nft_label', instance.nft_label)
+        instance.batch_id = validated_data.get('batch_id', instance.batch_id)
+       
+        instance.save()
+        return instance
+    
+    
+class BerryTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = berry_types
+        fields = ['id', 'type', 'nft_code', 'nft_label', 'batch_id']
+
+
+class GrowerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = grower
+        fields = ['id', 'name', 'farm_code']
+
+
+class CertificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = certifications
+        fields = ['id', 'name']
+
+
+class UtilityTagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = utility_tags
+        fields = ['id', 'name']
+
+class berry_batch_serializers(serializers.ModelSerializer):
+    berry_type = serializers.PrimaryKeyRelatedField(queryset=berry_types.objects.all(), required=False)
+    farm_code = serializers.PrimaryKeyRelatedField(queryset=grower.objects.all(), required=False)
+    certifications = serializers.PrimaryKeyRelatedField(queryset=certifications.objects.all(), many=True, required=False)
+    utility_tags = serializers.PrimaryKeyRelatedField(queryset=utility_tags.objects.all(), many=True, required=False)
+    harvest_date=serializers.SerializerMethodField()
+    
+    class Meta:
+        model = berry_batch
+        fields = "__all__"
+        read_only_fields = ['harvest_date']
+    def get_harvest_date(self, obj):
+        local_tz = pytz.timezone('Asia/Kolkata')  # Set to your desired time zone
+        local_dt = obj.harvest_date.astimezone(local_tz)
+        return local_dt.strftime('%Y-%m-%d %H:%M:%S')
+    def create(self, validated_data):
+        certifications_data = validated_data.pop('certifications', [])
+        utility_tags_data = validated_data.pop('utility_tags', [])
+        
+        batch = berry_batch.objects.create(**validated_data)
+        batch.certifications.set(certifications_data)
+        batch.utility_tags.set(utility_tags_data)
+        return batch
+
+    def update(self, instance, validated_data):
+        certifications_data = validated_data.pop('certifications', None)
+        utility_tags_data = validated_data.pop('utility_tags', None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        if certifications_data is not None:
+            instance.certifications.set(certifications_data)
+        if utility_tags_data is not None:
+            instance.utility_tags.set(utility_tags_data)
+
+        instance.save()
+        return instance
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        # Replace FK fields with nested representations
+        representation['berry_type'] = BerryTypeSerializer(instance.berry_type).data if instance.berry_type else None
+        representation['farm_code'] = GrowerSerializer(instance.farm_code).data if instance.farm_code else None
+        representation['certifications'] = CertificationSerializer(instance.certifications.all(), many=True).data
+        representation['utility_tags'] = UtilityTagSerializer(instance.utility_tags.all(), many=True).data
+        return representation 

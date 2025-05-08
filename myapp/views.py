@@ -704,3 +704,99 @@ class utility_tags_view(APIView):
                 return Response({'status': "invalid id"})
         else:
             return Response({'status': "invalid data"})
+        
+        
+class berry_types_view(APIView):
+    def get(self, request, id=None):
+        if id:
+            try:
+                uid = berry_types.objects.get(id=id)
+                serializer = berry_types_serializers(uid)
+                return Response({'status': 'success', 'data': serializer.data})
+            except berry_types.DoesNotExist:
+                return Response({'status': "Invalid"})
+        else:
+            uid = berry_types.objects.all().order_by("-id")
+            serializer = berry_types_serializers(uid, many=True)
+            return Response({'status': 'success', 'data': serializer.data})
+
+    def post(self, request):
+        serializer = berry_types_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 'success', 'data': serializer.data})
+        else:
+            return Response({'status': "invalid data", 'errors': serializer.errors})
+
+    def patch(self, request, id=None):
+        try:
+            uid = berry_types.objects.get(id=id)
+        except berry_types.DoesNotExist:
+            return Response({'status': "invalid data"})
+
+        serializer = berry_types_serializers(uid, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 'success', 'data': serializer.data})
+        else:
+            return Response({'status': "invalid data", 'errors': serializer.errors})
+
+    def delete(self, request, id=None):
+        if id:
+            try:
+                uid = berry_types.objects.get(id=id)
+                uid.delete()
+                return Response({'status': 'Deleted data'})
+            except berry_types.DoesNotExist:
+                return Response({'status': "invalid id"})
+        else:
+            return Response({'status': "invalid data"})
+        
+        
+#==================
+class berry_batch_view(APIView):
+    def get(self, request, id=None):
+        if id:
+            try:
+                uid = berry_batch.objects.get(id=id)
+                serializer = berry_batch_serializers(uid)
+                return Response({'status': 'success', 'data': serializer.data})
+            except berry_batch.DoesNotExist:
+                return Response({'status': "Invalid"})
+        
+        else:
+            uid = berry_batch.objects.all().order_by("-id")
+            serializer = berry_batch_serializers(uid, many=True)
+            return Response({'status': 'success', 'data': serializer.data})
+       
+    def post(self, request):
+        serializer = berry_batch_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 'success', 'data': serializer.data})
+        else:
+            return Response({'status': "invalid data", 'errors': serializer.errors})
+
+    def patch(self, request, id=None):
+        try:
+            uid = berry_batch.objects.get(id=id)
+        except berry_batch.DoesNotExist:
+            return Response({'status': "invalid data"})
+
+        serializer = berry_batch_serializers(uid, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 'success', 'data': serializer.data})
+        else:
+            return Response({'status': "invalid data", 'errors': serializer.errors})
+
+    def delete(self, request, id=None):
+        if id:
+            try:
+                uid = berry_batch.objects.get(id=id)
+                uid.delete()
+                return Response({'status': 'Deleted data'})
+            except berry_batch.DoesNotExist:
+                return Response({'status': "invalid id"})
+        else:
+            return Response({'status': "invalid data"})

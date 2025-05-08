@@ -17,5 +17,8 @@ admin.site.register(blog_categories)
 admin.site.register(utility_tags)
 admin.site.register(certifications)
 admin.site.register(grower)
+admin.site.register(berry_batch)
+admin.site.register(berry_types)
+
 
 

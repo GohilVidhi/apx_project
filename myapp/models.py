@@ -147,3 +147,32 @@ class utility_tags(models.Model):
     name=models.CharField(max_length=100,blank=True,null=True)
     def __str__(self):
         return self.name
+    
+    
+    
+class berry_types(models.Model):
+    type=models.CharField(max_length=100,blank=True,null=True)
+    nft_code=models.CharField(max_length=100,blank=True,null=True)
+    nft_label=models.CharField(max_length=100,blank=True,null=True)
+    batch_id=models.CharField(max_length=100,blank=True,null=True)
+    
+    def __str__(self):
+        return self.type
+    
+    
+    
+class berry_batch(models.Model):
+    description = models.TextField(blank=True, null=True)
+    berry_type = models.ForeignKey(berry_types, on_delete=models.SET_NULL, null=True, blank=True)
+    # batch_id = models.CharField(max_length=100, blank=True, null=True)
+    harvest_date = models.DateTimeField(auto_now_add=True,blank=True,null=True)
+    quantity_grams = models.IntegerField(blank=True, null=True)
+    carbon_offset_kg = models.FloatField(blank=True, null=True)
+    traceability_qr = models.CharField(max_length=100, blank=True, null=True)
+    current_owner = models.CharField(max_length=100, blank=True, null=True)
+    farm_code = models.ForeignKey(grower, on_delete=models.SET_NULL, null=True, blank=True)
+    certifications = models.ManyToManyField(certifications, blank=True)
+    utility_tags = models.ManyToManyField(utility_tags, blank=True)
+
+    def __str__(self):
+        return f"{self.berry_type}"

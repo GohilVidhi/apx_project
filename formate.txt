@@ -240,8 +240,97 @@ Formate :
   "price": 12.5
 }
 
+#=======================
+12.Grower
+
+GET   : https://apxtoken.pythonanywhere.com/grower/
+
+POST  : https://apxtoken.pythonanywhere.com/grower/
+
+PATCH : https://apxtoken.pythonanywhere.com/grower/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/grower/pass id/
+
+Formate :
+
+{"name":"Test Grower",
+"farm_code":"dd123"}
+
+#=============================
+13. Certification
+
+GET   : https://apxtoken.pythonanywhere.com/certifications/
+
+POST  : https://apxtoken.pythonanywhere.com/certifications/
+
+PATCH : https://apxtoken.pythonanywhere.com/certifications/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/certifications/pass id/
+
+Formate :
+
+{"name":"Test Certification"}
+
+#============================
+14. Utility Tags
+
+GET   : https://apxtoken.pythonanywhere.com/utility_tags/
+
+POST  : https://apxtoken.pythonanywhere.com/utility_tags/
+
+PATCH : https://apxtoken.pythonanywhere.com/utility_tags/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/utility_tags/pass id/
+
+Formate :
+
+{"name":"Test Utility"}
 ===================
 
+
+15. Berry Types
+
+GET   : https://apxtoken.pythonanywhere.com/berry_types/
+
+POST  : https://apxtoken.pythonanywhere.com/berry_types/
+
+PATCH : https://apxtoken.pythonanywhere.com/berry_types/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/berry_types/pass id/
+
+Formate :
+
+{"type":"Test Berry Type",
+"nft_code":"dd2",
+"nft_label":"d23",
+"batch_id":"234"}
+
+#====================================
+16. Berry Batch
+
+GET   : https://apxtoken.pythonanywhere.com/berry_batch/
+
+POST  : https://apxtoken.pythonanywhere.com/berry_batch/
+
+PATCH : https://apxtoken.pythonanywhere.com/berry_batch/pass id/
+
+DELETE : https://apxtoken.pythonanywhere.com/berry_batch/pass id/
+
+
+Formate :
+
+{
+  "description": "Fresh berries batch",
+  "berry_type": pass berry type ID,
+
+  "quantity_grams": 1200,
+  "carbon_offset_kg": 2.5,
+  "traceability_qr": "QR123456",
+  "current_owner": "Retailer X",
+  "farm_code": pass Grower ID,
+  "certifications": [pass certifications ID(multiple)],
+  "utility_tags": [pass utility_tags ID(multiple)]
+}
 
 
 
